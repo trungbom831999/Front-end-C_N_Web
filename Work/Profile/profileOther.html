@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> Profile of Other </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+	integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+	crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+	crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+	crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+	<link rel="shortcut icon" type="img" href="sm_icon.jpg"/>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header class="nava">
+		<!-- <div class="container"> -->
+			<div class="row" style="margin: 0px;">
+				<div class="col acol1">
+					<a href="#" class="btn btn-info btn-lg">
+						<i class="fas fa-align-justify"></i>
+					</a>
+					<img src="icon.png" id="icon">
+					<a href="#" class="btn btn-info btn-lg">
+						<i class="fas fa-home"></i>
+					</a>
+				</div>
+				<div class="col-6 asearch acol2" style="height: 100%;">
+					<form class="form-inline my-2 my-lg-0">
+						<input class="form-control mr-sm-2 ainput" type="search" placeholder="Search" aria-label="Search">
+						<a href="#" class="btn btn-info btn-lg abutton">
+							Search
+						</a>
+					</form>
+				</div>
+				<div class="col acol2">
+					<a href="profile.html">
+						<img src="sm_icon.jpg" alt="Avatar" class="avatar1">
+					</a>
+					<a href="#" class="btn btn-info btn-lg float-right">
+						<i class="fas fa-bell"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<div id="profile">
+		<div id="avatar-name" class="center-div">
+			<div id="avatar">
+				<img class="rounded-circle" id="myImg" src="sm_icon.jpg" alt="avatar member" style="height: 100px; margin-top:2px">
+				<div id="myModalAvatar" class="modal-avatar">
+					<span id="close-avatar">&times;</span>
+					<img class="modal-content-avatar" id="img01"/>
+				</div>
+				<div style="display: none">
+					<img id="update-avatar" style="border-style: double; border-color: #ebebe0; border-radius: 50% " src="ca.png" title="Đổi Avatar" />
+					<input type="file" id="img-upload" accept=".png, .jpg, .jpeg">
+				</div>
+			</div>
+			<h3 class="member-name" style="font-weight: 10px">Member Name</h3>
+		</div>
+		<hr>
+
+		<div id="information" class="center-div">
+			<form>
+				<div class="form-group">
+					<label for="name">Tên hiển thị</label>
+					<input type="text" class="form-control" id="name" value="Member Name" name="name" disabled>
+					<div class="invalid-feedback"></div>
+				</div>
+				<div class="form-group">
+					<label for="description">Lý lịch</label>
+					<textarea type="textarea" class="form-control" id="description" name="description" style="height: 150px" disabled>Sơ yếu lý lịch</textarea>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<script>
+		document.getElementById('update-avatar').onclick = function(){
+			document.getElementById('img-upload').click();
+		};
+
+		$(document).ready(function(){
+			$('input[type="file"]').change(function(e){
+				Swal.fire({
+					position: 'center',
+					icon: 'success',
+					title: 'Tải lên thành công',
+					showConfirmButton: false,
+					timer: 1200
+				})
+			});
+		});
+
+		$(".custom-file-input").on("change", function() {
+			var fileName = $(this).val().split("\\").pop();
+			$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+		});
+
+		//zoom avatar
+		var modalAvatar = document.getElementById("myModalAvatar");
+
+		var img = document.getElementById("myImg");
+		var modalImg = document.getElementById("img01");
+		img.onclick = function(){
+			modalAvatar.style.display = "block";
+			modalImg.src = this.src;
+		}
+		var closeAvatar = document.getElementById("close-avatar");
+		$("#close-avatar").click(function(){
+			modalAvatar.style.display = "none";
+		});
+		//end zoom
+
+// Disable form submissions if there are invalid fields
+(function() {
+	'use strict';
+	window.addEventListener('load', function() {
+    // Get the forms we want to add validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+    	form.addEventListener('submit', function(event) {
+    		if (form.checkValidity() === false) {
+    			event.preventDefault();
+    			event.stopPropagation();
+    		}
+    		form.classList.add('was-validated');
+    	}, false);
+    });
+}, false);
+})();
+
+function checkPass(){
+	var newPassword=document.changePass.newPass.value;
+	var rePassword=document.changePass.rePass.value;
+
+	if(newPassword==rePassword /*&& (newPassword != null || newPassword != "")*/){
+		return true;
+	}
+	else{
+		alert("Mật khẩu không trùng khớp");
+		return false;
+	}
+};
+</script>
+</body>
+</html>

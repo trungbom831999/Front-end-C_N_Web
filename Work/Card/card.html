@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> Card </title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+	integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+	crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+	crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+	crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	<link rel="shortcut icon" type="img" href="sm_icon.jpg"/>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="container" style="padding: 0">
+		<div id="cover-img">
+			<img id="update-avatar" style="border-style: double; border-color: #ebebe0; border-radius: 5px; " src="ca.png" title="Đổi ảnh bìa" />
+			<input type="file" id="img-upload" accept=".png, .jpg, .jpeg">
+			<button type="submit" id="saveCoverImg" class="btn btn-primary mt-2" style="display: block;">Lưu</button>
+		</div>
+	</div>
+	<div class="container" style="margin-top: -5px">
+		<div id="card-name">
+			<span class="spanToInput span-cardname">Tên công việc</span>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-9">
+				<div id="show-deadline">
+					<p><i class='far fa-calendar-times'></i> Deadline</p>
+					<p id="deadline-date"></p>
+					<p id="deadline-time"></p>
+				</div>
+
+				<form action="" method="post">
+					<div class="form-group">
+						<label for="description-card"><i class='fas fa-rainbow'></i> Mô tả</label>
+						<textarea class="form-control" rows="5" id="description-card" name="description-card"></textarea>
+					</div>
+					<button type="submit" class="btn btn-primary">Lưu</button>
+				</form>
+				<hr>
+
+				<form action="" method="post" style="margin-bottom: 30px">
+					<p><i class='fas fa-paperclip'></i> Tập đính kèm</p>
+					<div class="custom-file">
+						<input type="file" class="custom-file-input" id="customFile" name="filename">
+						<label class="custom-file-label" for="customFile">Chọn file</label>
+						<button type="submit" id="saveFile" class="btn btn-primary mt-2">Lưu</button>
+					</div>
+				</form>
+				<hr>
+				<p><i class='fab fa-rocketchat'></i> Bình luận</p>
+				<div class="my-comment">
+					<form class="mb-3" action="" method="post">
+						<div class="form-group">
+							<textarea class="form-control" id="myCmt" rows="2" placeholder="Viết bình luận..."></textarea>
+						</div>
+						<button id="cmt" type="submit" class="btn btn-primary">Bình luận</button>
+					</form>
+				</div>
+
+			<div class="comment-list">
+				<div class="a-comment">
+					<img class="rounded-circle" src="avt1.png" alt="my avatar" style="height: 40px">
+					<a href="../Profile/profileOther.html" class="link-profile-member"> Member Name 1</a>
+					<div class="comment container">
+						<p>Đây là comment của member 1</p>
+					</div>
+				</div>
+
+				<div class="a-comment">
+					<img class="rounded-circle" src="avt2.png" alt="my avatar" style="height: 40px">
+					<a href="../Profile/profileOther.html" class="link-profile-member"> Member Name 2</a>
+					<div class="comment container">
+						<p>Đây là comment của member 2</p>
+					</div>
+				</div>
+
+				<div class="a-comment">
+					<img class="rounded-circle" src="avt3.png" alt="my avatar" style="height: 40px">
+					<a href="../Profile/profileOther.html" class="link-profile-member"> Member Name 3</a>
+					<div class="comment container">
+						<p>Đây là comment của member 3</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-sm-3">
+			<button id="deadline" class="btn btn-primary btn-col-2"><i class='far fa-clock'></i> Thêm deadline</button>
+			<div id="formDeadline" class="form-group">
+				<input class="form-control mt-2" type="date">
+				<input class="form-control mt-2" type="time">
+				<button type="submit" id="saveDeadline" class="btn btn-primary mt-2">Lưu</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	document.getElementById('update-avatar').onclick = function(){
+		document.getElementById('img-upload').click();
+	};
+
+	$(".custom-file-input").on("change", function() {
+		var fileName = $(this).val().split("\\").pop();
+		$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+	});
+
+		//disable button when input null
+		$(document).ready(function() {
+			$('button[id="cmt"]').attr('disabled', true);
+			$('textarea[id="myCmt"]').on('keyup',function() {
+				var textarea_value = $("#myCmt").val();
+				if(textarea_value != '') {
+					$('button[id="cmt"]').attr('disabled', false);
+				} else {
+					$('button[id="cmt"]').attr('disabled', true);
+				}
+			});
+		});
+
+		//display none button saveFile && saveCoverImg
+		$(document).ready(function() {
+			$("#saveFile").css("display", "none");
+			$('input[name="filename"]').change(function(e){
+				$("#saveFile").css("display", "block");
+			});
+		});
+
+		$(document).ready(function() {
+			$("#saveCoverImg").css("display", "none");
+			$('#img-upload').change(function(e){
+				$("#saveCoverImg").css("display", "block");
+			});
+		});
+
+		//show form deadline
+		$(document).ready(function() {
+			$("#deadline").click(function() {
+				$("#formDeadline").toggle();
+			});
+		});
+
+		//show button saveDeadline
+		$(document).ready(function() {
+			$("#saveDeadline").css("display", "none");
+			($('input[type="date"]') && $('input[type="time"]')).change(function(e){
+				$("#saveDeadline").css("display", "block");
+			});
+		});
+
+		//show Deadline
+		$("#saveDeadline").click(function(){
+			var date = $('input[type="date"]').val();
+			var time = $('input[type="time"]').val();
+			$("#deadline-date").text(date);
+			$("#deadline-time").text(time);
+			$("#show-deadline").css("display","block");
+		});
+
+		//click span change to input name-work
+		var switchToInput = function () {
+			var $input = $("<input>", {
+				val: $(this).text(),
+				type: "text",
+				rel : jQuery(this).text(),
+			});
+			$input.css({'font-weight': 'bold','margin-top':'2px'});
+			$input.addClass("spanToInput");
+			$(this).replaceWith($input);
+			$input.on("blur", switchToSpan);
+			$input.select();
+		};
+		var switchToSpan = function () {
+			if(jQuery(this).val()){
+				var $text = jQuery(this).val();
+			} else {
+				var $text = jQuery(this).attr('rel');
+			}
+			var $span = $("<span>", {
+				text: $text,
+			});
+			$span.addClass("spanToInput");
+			$span.addClass("span-cardname");
+			$(this).replaceWith($span);
+			$span.on("click", switchToInput);
+		}
+		$(".spanToInput").on("click", switchToInput);
+	</script>
+</body>

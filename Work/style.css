@@ -1,6 +1,6 @@
 body {
     background-image: url("1.jpg");
-    background-size: auto;
+    background-size: cover;
 }
 
 html, body{
@@ -99,6 +99,7 @@ a.a-nav:hover{
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
+    overflow-y: hidden;
     align-items: baseline;
 }
 
@@ -123,7 +124,7 @@ a.a-nav:hover{
     max-height: 85vh;
     width: 280px;
     box-sizing: border-box;
-    overflow-y: hidden;
+    overflow: hidden;
     flex: 0 0 auto;
     /*max-height: 640px;*/
     margin-left: 5px;
@@ -131,9 +132,18 @@ a.a-nav:hover{
 }
 
 /*reponsive height*/
-@media (max-height: 732px) and (min-width: 686px) {
+@media (min-height: 740px){
+    .list-card{
+        max-height: 526px;
+    }
+}
+
+@media (max-height: 739px) and (min-width: 686px) {
     .list-item{
         max-height: 84vh;
+    }
+    .list-card{
+        max-height: 67vh;
     }
 }
 
@@ -141,11 +151,17 @@ a.a-nav:hover{
     .list-item{
         max-height: 83vh;
     }
+    .list-card{
+        max-height: 65vh;
+    }
 }
 
 @media (max-height: 645px) and (min-width: 610px) {
     .list-item{
         max-height: 82vh;
+    }
+    .list-card{
+        max-height: 64vh;
     }
 }
 
@@ -153,17 +169,26 @@ a.a-nav:hover{
     .list-item{
         max-height: 81vh;
     }
-}
-
-@media (max-height: 577px) and (min-width: 549px) {
-    .list-item{
-        max-height: 80vh;
+    .list-card{
+        max-height: 62vh;
     }
 }
 
-@media (max-height: 548px) and (min-width: 502px){
+@media (max-height: 577px) and (min-width: 548px) {
+    .list-item{
+        max-height: 80vh;
+    }
+    .list-card{
+        max-height: 60vh;
+    }
+}
+
+@media (max-height: 547px) and (min-width: 502px){
     .list-item{
         max-height: 78vh;
+    }
+    .list-card{
+        max-height: 57vh;
     }
 }
 
@@ -171,11 +196,17 @@ a.a-nav:hover{
     .list-item{
         max-height: 76vh;
     }
+    .list-card{
+        max-height: 53vh;
+    }
 }
 
 @media (max-height: 456px) and (min-width: 407px){
     .list-item{
         max-height: 73vh;
+    }
+    .list-card{
+        max-height: 48vh;
     }
 }
 
@@ -183,7 +214,36 @@ a.a-nav:hover{
     .list-item{
         max-height: 70vh;
     }
+    .list-card{
+        max-height: 42vh;
+    }
 }
+
+/*reponsive scroll*/
+@media (min-height: 721px){
+    .work-list{
+        height: 87%;
+    }
+}
+
+@media (max-height: 720px) and (min-width: 652px){
+    .work-list{
+        height: 86%;
+    }
+}
+
+@media (max-height: 651px) and (min-width: 607px){
+    .work-list{
+        height: 85%;
+    }
+}
+
+@media (max-height: 606px) and (min-width: 607px){
+    .work-list{
+        height: 84%;
+    }
+}
+
 
 /*.list-item::-webkit-scrollbar {
     border-radius: 6px;
@@ -208,7 +268,7 @@ a.a-nav:hover{
         box-sizing: border-box;
         overflow-y: scroll;
         flex: 0 0 auto;
-        max-height: 526px;
+        /*max-height: 526px;*/
     }
 
     .list-card::-webkit-scrollbar {
@@ -224,6 +284,7 @@ a.a-nav:hover{
 
     .list-name{
         padding: 5px;
+        padding-bottom: 0;
         background-color:#e6e6e6;
         z-index: 1;
     }
@@ -235,7 +296,13 @@ a.a-nav:hover{
     }
 
     .spanToInput2{
-        margin: 8px 10px;
+        margin-left: 5px;
+        height: 18px;
+        width: 225px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: inline-block;
     }
 
     .card{
@@ -258,6 +325,8 @@ a.a-nav:hover{
 
     .card-title{
         margin: 0px;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .add-card{
@@ -348,6 +417,69 @@ a.a-nav:hover{
 }
 
 
+/*css for card modal*/
+a{
+    color: black;
+}
+
+.container{
+    background-color: #f2f2f2;
+}
+
+.btn-col-2{
+    margin: 5px;
+    width: 100%;
+}
+
+.span-cardname{
+    color: black;
+    font-weight: bold;
+    float: left;
+    margin-top:5px;
+    margin-left: 2px;
+}
+
+.comment{
+    border-radius: 5px;
+    border-style: solid;
+    border-color: #e6e6e6;
+    background-color: white;
+    margin: 5px;
+}
+
+#card-name{
+    height: 50px;
+    margin-top: 5px;
+}
+
+#cover-img{
+    background-color: #e6e6e6;
+    background-image:url("card1.jpg");
+    height: 160px;
+    background-size: contain;
+    background-origin: content-box;
+    background-position: center center;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+#img-upload{
+    display: none;
+}
+
+#formDeadline{
+    display: none;
+}
+
+#show-deadline{
+    display: none;
+}
+
+#deadline-date, #deadline-time{
+    color: red;
+    margin: 5px;
+}
 
 /* div {
     padding: 3px;
